@@ -1,24 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
-
+import svgs from './components/svgs';
+import ideia from './imgs/undraw_electricity_k2ft.svg'
+import styled from 'styled-components';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import Create from './components/Create';
+import View from './components/View';
+import userContext from './UserContext';
+import { useEffect, useState } from 'react';
 function App() {
+  const [mobile,setMobile] = useState(false)
+  useEffect(() => {
+    setMobile(window.innerWidth < 480)
+  },[])
+  window.addEventListener('resize',() => {
+    setMobile(window.innerWidth < 480)
+    console.log(mobile,window.innerWidth)
+  })
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+      <BrowserRouter>
+        <userContext.Provider value={{ mobile}}>
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/Create' element={<Create />}></Route>
+        <Route path='/View' element={<View />}></Route>
+      </Routes>
+        </userContext.Provider>
+      </BrowserRouter>
+      </>
   );
 }
 
