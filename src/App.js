@@ -18,10 +18,12 @@ function App() {
     setMobile(window.innerWidth < 480)
     console.log(mobile,window.innerWidth)
   })
+  const [conteudo,setConteudo] = useState(null)
+  const [create,setCreate] = useState(null)
   return (
       <>
       <BrowserRouter>
-        <userContext.Provider value={{ mobile}}>
+        <userContext.Provider value={{ mobile,create,setCreate}}>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/Create' element={<Create />}></Route>
