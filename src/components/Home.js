@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ideia from '../imgs/undraw_electricity_k2ft.svg'
 import '../App.css';
 import styled from 'styled-components';
@@ -9,10 +9,13 @@ import Buttons from './Button';
 
 const Home = () => {
   const {Button, ButtonTwo} = Buttons
-  const {mobile} = React.useContext(userContext)
+  const {mobile,setCreate} = React.useContext(userContext)
   const styles = {
     divnotMobile: {textAlign: 'center',paddingTop: '16px',display: 'grid',gridTemplateColumns: '6fr 4fr'}
   }
+  useEffect(() => {
+    setCreate(null)
+  }, [])
   return (
     <div>
       <Header />

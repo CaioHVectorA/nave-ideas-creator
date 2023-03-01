@@ -31,7 +31,7 @@ html {
     flex-direction: column-reverse;
   }
   .imgdec {
-    max-width: 300px !important;
+    max-width: 260px !important;
     margin: 0 auto;
   }
 }
