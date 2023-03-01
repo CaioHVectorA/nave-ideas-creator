@@ -61,7 +61,7 @@ const Char = () => {
   <div style={{width: 'calc(80% - 40px)',height: 'calc(65% - 40px)',padding: '20px',textAlign: 'center',background: '#fff',borderRadius: '20px'}}>
     <h1>Aviso!</h1>
     <p style={{marginTop: '32px',fontSize: '18px',maxWidth: '92%',margin: '20px auto'}}>Seu personagem será enviado aos administradores que aprovarão-o o mais rápido possível para o tornar público!</p>
-    <NavLink to={'/'}><Buttons.ButtonTwo style={{fontSize: '20px'}}>Enviar</Buttons.ButtonTwo></NavLink>
+    <NavLink onClick={() => {document.body.style.overflowY = 'visible'}} to={'/'}><Buttons.ButtonTwo style={{fontSize: '20px'}}>Enviar</Buttons.ButtonTwo></NavLink>
     <p onClick={() => setModal(false)} style={{textDecoration: 'underline',marginTop: '32px',cursor: 'pointer',fontSize: '20px',fontFamily: 'Open Sans'}}>Quero Revisar.</p>
   </div>
 </div>
