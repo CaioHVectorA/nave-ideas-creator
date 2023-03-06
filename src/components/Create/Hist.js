@@ -48,7 +48,6 @@ return () => clearInterval(interval)
     axios.post('https://apifor-nave.onrender.com/Hist', {
       Titulo: titulo,
       Subtitulo: subtitulo,
-      Sinopse: sinopse,
       Autoria: autoria,
       Historia: historia,
       Personagens: personagensvinculados,
