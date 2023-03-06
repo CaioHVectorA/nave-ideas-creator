@@ -9,6 +9,7 @@ import Create from './components/Create';
 import View from './components/View';
 import userContext from './UserContext';
 import { useEffect, useState } from 'react';
+import Admin from './components/AdmMode/Admin';
 function App() {
   const [mobile,setMobile] = useState(false)
   useEffect(() => {
@@ -20,14 +21,16 @@ function App() {
   })
   const [conteudo,setConteudo] = useState(null)
   const [create,setCreate] = useState(null)
+  const [view,setView] = useState(null)
   return (
       <>
       <BrowserRouter>
-        <userContext.Provider value={{ mobile,create,setCreate}}>
+        <userContext.Provider value={{ mobile,create,setCreate, view, setView}}>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/Create' element={<Create />}></Route>
         <Route path='/View' element={<View />}></Route>
+        <Route path='/Admin' element={<Admin />}></Route>
       </Routes>
         </userContext.Provider>
       </BrowserRouter>

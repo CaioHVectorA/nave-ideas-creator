@@ -61,7 +61,8 @@ const Char = () => {
     }
     function HandleSubmittoApi() {
       const TempChar = {...Char}
-      axios.post('http://localhost:4000/char',{
+      console.log('a')
+      axios.post('https://apifor-nave.onrender.com/char',{
         Nome: Nome,
         Desc: Char.Desc,
         Aparencia: Char.Aparencia,

@@ -1,4 +1,5 @@
 body {
+  transition: 0s;
   background: #f8f8f8;
   overflow-x: hidden;
   margin: 0;
