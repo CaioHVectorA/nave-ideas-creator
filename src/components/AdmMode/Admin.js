@@ -22,46 +22,47 @@ const Admin = () => {
       axios.post('https://apifor-nave.onrender.com/aprovedChar',{
         Nome: props.item.Nome,
         Desc: props.item.Desc,
-        Aparencia: props.item.Aparencia,
-        Poder: props.item.Poder,
-        Autoria: props.item.Autoria
+        Atributos: props.item.Atributos,
+        ImgRef: props.item.ImgRef,
+        Ident: props.item.Ident
       })
       setTimeout(() => {
         setReset(!reset)
       }, 30);
     }
     return (
-      <div>
-      <div style={{transition: '0s',width: '348px',position: 'relative',height: '240px',background: '#141414',borderRadius: !expandido ? '25px' : '25px 25px 0px 0px',color: 'white',display: 'flex',flexDirection: 'column',alignItems: 'center',padding: '10px 12px'}}>
-       <div style={{position: 'relative',height: '240px',background: '#141414',borderRadius: '25px',color: 'white',display: 'flex',flexDirection: 'column',alignItems: 'center'}}> 
+      <div style={{backgroundColor: 'rgba(76,7,123,9)',borderRadius: '12px',padding: '16px'}}>
+        <div style={{width: 'calc(300px - 24px)',height: 'calc(440px - 24px)',backgroundColor: '#561185',borderRadius: '8px',border: '#340852 0px solid',display: 'flex',flexDirection: 'column',alignItems: 'center',color: 'white',padding: '12px'}}>
         <h2>{props.item.Nome}</h2>
-        <p style={{textOverflow: 'ellipsis',margin: '0 auto',maxWidth: '300px',overflow: 'hidden',whiteSpace: 'nowrap'}}>{props.item.Desc}</p>
-        {props.item.Desc.length < 50 && <p style={{maxHeight: '100px'}}>{props.item.Aparencia}</p>}
-        <h3 style={{position: 'absolute',bottom: '0px',maxHeight: '30px',overflowY: 'hidden'}}>{props.item.Autoria}</h3>
-       </div>
-       <div style={{display: 'flex',gap: '12px'}}>
+        <div style={{display: 'grid',width: '100%',gridTemplateColumns: '1fr 1fr',marginTop: '12px'}}>
+         <img src={props.item.ImgRef} style={{width: '110px',height: '150px',background: 'white',borderRadius: '8px'}} />
+          <div style={{display: 'flex',flexDirection: 'column',gap: '4px'}}>
+            <h3 style={{}}>Habilidades</h3>
+              <div style={{display: 'flex',justifyContent: 'space-between',width: '80%'}}>
+                <p>Talento</p>
+                <p>{props.item.Atributos.Talento}</p>
+              </div>
+              <div style={{display: 'flex',justifyContent: 'space-between',width: '80%'}}>
+                <p>Energia</p>
+                <p>{props.item.Atributos.Energia}</p>
+              </div>
+              <div style={{display: 'flex',justifyContent: 'space-between',width: '80%'}}>
+                <p>Papo</p>
+                <p>{props.item.Atributos.Papo}</p>
+              </div>
+              <div style={{display: 'flex',justifyContent: 'space-between',width: '80%'}}>
+                <p>Sorte</p>
+                <p>{props.item.Atributos.Sorte}</p>
+              </div>
+          </div>
+        </div>
+        <div style={{marginTop: '60px',padding: '16px',height: '112px',width: 'calc(100% - 40px)',borderRadius: '8px',backgroundColor: '#e7e7e7',color: 'black'}}><p style={{width: '100%',overflowWrap: 'break-word',overflowY: 'auto',maxHeight: '100%'}}>{props.item.Desc}</p></div>
+        <p style={{marginTop: '20px'}}>Feito por {props.item.Ident}</p>
+        </div>
+        <div style={{width: '100%',display: 'flex',justifyContent: 'space-between'}}>
         <Buttons.Button onClick={() => {RecusarChar(props.item)}} style={{fontSize: '20px',padding: '5px 10px',background: '#d64541',color: 'white'}}>Recusar</Buttons.Button>
         <Buttons.Button onClick={() => {AprovarChar(props.item)}} style={{fontSize: '20px',padding: '5px 10px',background: '#93faa5',color: 'black'}}>Aprovar</Buttons.Button>
-       </div>
-       <Buttons.Button onClick={() => setExpandido(!expandido)} style={{fontSize: '24px',padding: '5px 24px',background: '#f8f8f8',color: 'black'}}>Visualizar</Buttons.Button>
-      </div>
-      {expandido && <div style={{background: '#e7e7e7',width: '332px',padding: '10px 20px',borderRadius: '0px 0px 25px 25px'}}>
-        <h2>Nome</h2>
-        <p style={{fontSize: '18px',maxHeight: '100px',overflowY: 'hidden'}}>{props.item.Nome}</p>
-        <Division />
-        <h2>Descrição</h2>
-        <p style={{fontSize: '18px',maxHeight: '100px',overflowY: 'hidden'}}>{props.item.Desc}</p>
-        <Division />
-        <h2>Aparência</h2>
-        <p style={{fontSize: '18px',maxHeight: '100px',overflowY: 'hidden'}}>{props.item.Aparencia}</p>
-        <Division />
-        <h2>Poder</h2>
-        <p style={{fontSize: '18px',maxHeight: '100px',overflowY: 'hidden'}}>{props.item.Poder}</p>
-        <Division />
-        <h2>Autoria</h2>
-        <p style={{fontSize: '18px',maxHeight: '100px',overflowY: 'hidden'}}>{props.item.Autoria}</p>
-        <Division />
-        </div>}
+        </div>
       </div>
     )
   }
@@ -120,9 +121,6 @@ const Admin = () => {
        {props.item.Personagens.map((item) => (
          <p style={{fontSize: '18px',maxHeight: '100px',overflowY: 'hidden'}}>{item.Nome},</p>
        ))}
-        {/* <Division /> */}
-        {/* <h2>Autoria</h2> */}
-        {/* <p style={{fontSize: '18px',maxHeight: '100px',overflowY: 'hidden',textOverflow: 'ellipsis'}}>{props.item.Historia}</p> */}
         <Division />
         </div>}
       </div>
@@ -143,15 +141,12 @@ const Admin = () => {
     }))
   },[reset])
   useEffect(() => {
-    console.log('DBH:',uniqueDBH)
     let db = [];
     fetch('https://apifor-nave.onrender.com/hist').then(Response => Response.json().then(Data => {
       Data.forEach(element => {
         db.push(element)
       });  
       setUDBH([... new Set(db.map(item => JSON.stringify(item)))].map(item => JSON.parse(item)))
-      console.log('DBH:',uniqueDBH)
-      // console.log(uniqueDB)
     }))
   },[reset])
   useEffect(() => {
@@ -164,7 +159,7 @@ const Admin = () => {
     });  
     if (!expandido){
       setUDBH([... new Set(db.map(item => JSON.stringify(item)))].map(item => JSON.parse(item)))
-      console.log(uniqueDBH)
+      // console.log(uniqueDBH)
     }
     }))
     }, 5000);

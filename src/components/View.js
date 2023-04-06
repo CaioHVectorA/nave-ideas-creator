@@ -62,14 +62,33 @@ const View = () => {
         </div>
         <div style={{width: '100vw',display: 'grid',gridTemplateColumns: 'repeat(auto-fit,350px)',padding: '12px 32px',gap: '32px',marginTop: '20px',justifyContent: 'center'}}>
         {chars && selected !== 'Hist' && chars.map(item => (
-          <div key={item._id} style={{position: 'relative',backgroundColor: '#080808',color: 'white',width: window.innerWidth > 480 ? '320px' : '280px',display: 'flex',flexDirection: 'column',alignItems: 'center',borderRadius: '25px',maxHeight: '240px',padding: '8px 12px'}}>
-            <h1>{item.Nome}</h1>
-            <div style={{height: '131px'}}>
-            <p style={{color: 'rgba(255,255,255,.8)',maxHeight: '30px',whiteSpace: 'nowrap',maxWidth: '300px',overflowX: 'hidden'}}>{item.Autoria}</p>
-            <p style={{maxHeight: '110px',overflowY: 'hidden',margin: '0 auto',textAlign: 'center'}}>{item.Desc}</p>
-            </div>
-            <Buttons.Button onClick={() => setViewChar(item)} style={{fontSize: '20px',padding: '5px 8px',boderRadius: '55px'}}>Visualizar</Buttons.Button>
+          <div style={{width: 'calc(300px - 24px)',height: 'calc(440px - 24px)',backgroundColor: '#561185',borderRadius: '8px',border: '#340852 0px solid',display: 'flex',flexDirection: 'column',alignItems: 'center',color: 'white',padding: '12px'}}>
+        <h2>{item.Nome}</h2>
+        <div style={{display: 'grid',width: '100%',gridTemplateColumns: '1fr 1fr',marginTop: '12px'}}>
+         <img src={item.ImgRef} style={{width: '110px',height: '150px',background: 'white',borderRadius: '8px'}} />
+          <div style={{display: 'flex',flexDirection: 'column',gap: '4px'}}>
+            <h3 style={{}}>Habilidades</h3>
+              <div style={{display: 'flex',justifyContent: 'space-between',width: '80%'}}>
+                <p>Talento</p>
+                <p>{item.Atributos.Talento}</p>
+              </div>
+              <div style={{display: 'flex',justifyContent: 'space-between',width: '80%'}}>
+                <p>Energia</p>
+                <p>{item.Atributos.Energia}</p>
+              </div>
+              <div style={{display: 'flex',justifyContent: 'space-between',width: '80%'}}>
+                <p>Papo</p>
+                <p>{item.Atributos.Papo}</p>
+              </div>
+              <div style={{display: 'flex',justifyContent: 'space-between',width: '80%'}}>
+                <p>Sorte</p>
+                <p>{item.Atributos.Sorte}</p>
+              </div>
           </div>
+        </div>
+        <div style={{marginTop: '60px',padding: '16px',height: '112px',width: 'calc(100% - 40px)',borderRadius: '8px',backgroundColor: '#e7e7e7',color: 'black'}}><p style={{width: '100%',overflowWrap: 'break-word',overflowY: 'auto',maxHeight: '100%'}}>{item.Desc}</p></div>
+        <p style={{marginTop: '20px'}}>Feito por {item.Ident}</p>
+        </div>
         ))}
         {hist && selected !== 'Perso' && hist.map(item => (
           <div key={item._id} style={{position: 'relative',backgroundColor: 'rgb(59, 0, 106)',color: 'white',width: window.innerWidth > 480 ? '320px' : '280px',display: 'flex',flexDirection: 'column',alignItems: 'center',borderRadius: '25px',maxHeight: '480px',padding: '8px 12px'}}>
